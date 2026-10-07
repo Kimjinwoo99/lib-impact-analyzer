@@ -1,0 +1,292 @@
+{
+  "packageName": "vuetify",
+  "mode": "CURRENT_VERSION_HEALTHCHECK",
+  "currentVersion": "3.6.10",
+  "targetVersion": null,
+  "sortPolicy": {
+    "versionOrder": [
+      "CURRENT",
+      "TARGET",
+      "INTERMEDIATE_DESC"
+    ],
+    "categoryOrder": [
+      "BREAKING",
+      "BUG_FIX",
+      "REVERT",
+      "FEATURE",
+      "LABS",
+      "REFACTOR",
+      "RELEASE_NOTE",
+      "PERFORMANCE",
+      "OTHER"
+    ],
+    "otherPolicy": "parser uncertainty; preserve rawText and pass to Agent for reclassification"
+  },
+  "range": {
+    "version": "3.6.10",
+    "policy": "current-version-only"
+  },
+  "releaseCount": 1,
+  "changeItemCount": 4,
+  "releases": [
+    {
+      "version": "3.6.10",
+      "versionRole": "CURRENT",
+      "tagName": "v3.6.10",
+      "name": "v3.6.10",
+      "publishedAt": "2024-06-19T22:07:07Z",
+      "sourceUrl": "https://github.com/vuetifyjs/vuetify/releases/tag/v3.6.10",
+      "sections": [
+        {
+          "title": "Bug Fixes",
+          "items": [
+            {
+              "itemId": "v3.6.10:wrench-bug-fixes:1",
+              "version": "3.6.10",
+              "versionRole": "CURRENT",
+              "tagName": "v3.6.10",
+              "publishedAt": "2024-06-19T22:07:07Z",
+              "sectionTitle": "Bug Fixes",
+              "category": "BUG_FIX",
+              "categoryPriority": 1,
+              "scope": "VDatePicker",
+              "summary": "don't update month/year if new model is empty (154e751), closes #20015",
+              "rawText": "**VDatePicker:** don't update month/year if new model is empty ([154e751](https://github.com/vuetifyjs/vuetify/commit/154e7516b89eb28f2f6c7568be92a5a28b5f572e)), closes [#20015](https://github.com/vuetifyjs/vuetify/issues/20015)",
+              "prNumbers": [
+                20015
+              ],
+              "issueNumbers": [
+                20015
+              ],
+              "commitHashes": [
+                "154e7516b89eb28f2f6c7568be92a5a28b5f572e"
+              ],
+              "sourceUrl": "https://github.com/vuetifyjs/vuetify/releases/tag/v3.6.10"
+            },
+            {
+              "itemId": "v3.6.10:wrench-bug-fixes:2",
+              "version": "3.6.10",
+              "versionRole": "CURRENT",
+              "tagName": "v3.6.10",
+              "publishedAt": "2024-06-19T22:07:07Z",
+              "sectionTitle": "Bug Fixes",
+              "category": "BUG_FIX",
+              "categoryPriority": 1,
+              "scope": "VExpansionPanel",
+              "summary": "remove unused toRef",
+              "rawText": "**VExpansionPanel:** remove unused toRef ([0931cec](https://github.com/vuetifyjs/vuetify/commit/0931cec21c35c062192b8f22b0438542f31bbce8))",
+              "prNumbers": [],
+              "issueNumbers": [],
+              "commitHashes": [
+                "0931cec21c35c062192b8f22b0438542f31bbce8"
+              ],
+              "sourceUrl": "https://github.com/vuetifyjs/vuetify/releases/tag/v3.6.10"
+            },
+            {
+              "itemId": "v3.6.10:wrench-bug-fixes:3",
+              "version": "3.6.10",
+              "versionRole": "CURRENT",
+              "tagName": "v3.6.10",
+              "publishedAt": "2024-06-19T22:07:07Z",
+              "sectionTitle": "Bug Fixes",
+              "category": "BUG_FIX",
+              "categoryPriority": 1,
+              "scope": "VExpansionPanel",
+              "summary": "propagate defaults provided by VExpansionPanels",
+              "rawText": "**VExpansionPanel:** propagate defaults provided by VExpansionPanels ([666484a](https://github.com/vuetifyjs/vuetify/commit/666484ae265194dc1512cb4f84f53ab928f5482b))",
+              "prNumbers": [],
+              "issueNumbers": [],
+              "commitHashes": [
+                "666484ae265194dc1512cb4f84f53ab928f5482b"
+              ],
+              "sourceUrl": "https://github.com/vuetifyjs/vuetify/releases/tag/v3.6.10"
+            },
+            {
+              "itemId": "v3.6.10:wrench-bug-fixes:4",
+              "version": "3.6.10",
+              "versionRole": "CURRENT",
+              "tagName": "v3.6.10",
+              "publishedAt": "2024-06-19T22:07:07Z",
+              "sectionTitle": "Bug Fixes",
+              "category": "BUG_FIX",
+              "categoryPriority": 1,
+              "scope": "VExpansionPanelTitle",
+              "summary": "propagate VIcon defaults",
+              "rawText": "**VExpansionPanelTitle:** propagate VIcon defaults ([cec2094](https://github.com/vuetifyjs/vuetify/commit/cec20943af77b1c723c560d7282ebecee865e38b))",
+              "prNumbers": [],
+              "issueNumbers": [],
+              "commitHashes": [
+                "cec20943af77b1c723c560d7282ebecee865e38b"
+              ],
+              "sourceUrl": "https://github.com/vuetifyjs/vuetify/releases/tag/v3.6.10"
+            }
+          ]
+        }
+      ],
+      "items": [
+        {
+          "itemId": "v3.6.10:wrench-bug-fixes:1",
+          "version": "3.6.10",
+          "versionRole": "CURRENT",
+          "tagName": "v3.6.10",
+          "publishedAt": "2024-06-19T22:07:07Z",
+          "sectionTitle": "Bug Fixes",
+          "category": "BUG_FIX",
+          "categoryPriority": 1,
+          "scope": "VDatePicker",
+          "summary": "don't update month/year if new model is empty (154e751), closes #20015",
+          "rawText": "**VDatePicker:** don't update month/year if new model is empty ([154e751](https://github.com/vuetifyjs/vuetify/commit/154e7516b89eb28f2f6c7568be92a5a28b5f572e)), closes [#20015](https://github.com/vuetifyjs/vuetify/issues/20015)",
+          "prNumbers": [
+            20015
+          ],
+          "issueNumbers": [
+            20015
+          ],
+          "commitHashes": [
+            "154e7516b89eb28f2f6c7568be92a5a28b5f572e"
+          ],
+          "sourceUrl": "https://github.com/vuetifyjs/vuetify/releases/tag/v3.6.10"
+        },
+        {
+          "itemId": "v3.6.10:wrench-bug-fixes:2",
+          "version": "3.6.10",
+          "versionRole": "CURRENT",
+          "tagName": "v3.6.10",
+          "publishedAt": "2024-06-19T22:07:07Z",
+          "sectionTitle": "Bug Fixes",
+          "category": "BUG_FIX",
+          "categoryPriority": 1,
+          "scope": "VExpansionPanel",
+          "summary": "remove unused toRef",
+          "rawText": "**VExpansionPanel:** remove unused toRef ([0931cec](https://github.com/vuetifyjs/vuetify/commit/0931cec21c35c062192b8f22b0438542f31bbce8))",
+          "prNumbers": [],
+          "issueNumbers": [],
+          "commitHashes": [
+            "0931cec21c35c062192b8f22b0438542f31bbce8"
+          ],
+          "sourceUrl": "https://github.com/vuetifyjs/vuetify/releases/tag/v3.6.10"
+        },
+        {
+          "itemId": "v3.6.10:wrench-bug-fixes:3",
+          "version": "3.6.10",
+          "versionRole": "CURRENT",
+          "tagName": "v3.6.10",
+          "publishedAt": "2024-06-19T22:07:07Z",
+          "sectionTitle": "Bug Fixes",
+          "category": "BUG_FIX",
+          "categoryPriority": 1,
+          "scope": "VExpansionPanel",
+          "summary": "propagate defaults provided by VExpansionPanels",
+          "rawText": "**VExpansionPanel:** propagate defaults provided by VExpansionPanels ([666484a](https://github.com/vuetifyjs/vuetify/commit/666484ae265194dc1512cb4f84f53ab928f5482b))",
+          "prNumbers": [],
+          "issueNumbers": [],
+          "commitHashes": [
+            "666484ae265194dc1512cb4f84f53ab928f5482b"
+          ],
+          "sourceUrl": "https://github.com/vuetifyjs/vuetify/releases/tag/v3.6.10"
+        },
+        {
+          "itemId": "v3.6.10:wrench-bug-fixes:4",
+          "version": "3.6.10",
+          "versionRole": "CURRENT",
+          "tagName": "v3.6.10",
+          "publishedAt": "2024-06-19T22:07:07Z",
+          "sectionTitle": "Bug Fixes",
+          "category": "BUG_FIX",
+          "categoryPriority": 1,
+          "scope": "VExpansionPanelTitle",
+          "summary": "propagate VIcon defaults",
+          "rawText": "**VExpansionPanelTitle:** propagate VIcon defaults ([cec2094](https://github.com/vuetifyjs/vuetify/commit/cec20943af77b1c723c560d7282ebecee865e38b))",
+          "prNumbers": [],
+          "issueNumbers": [],
+          "commitHashes": [
+            "cec20943af77b1c723c560d7282ebecee865e38b"
+          ],
+          "sourceUrl": "https://github.com/vuetifyjs/vuetify/releases/tag/v3.6.10"
+        }
+      ]
+    }
+  ],
+  "items": [
+    {
+      "itemId": "v3.6.10:wrench-bug-fixes:1",
+      "version": "3.6.10",
+      "versionRole": "CURRENT",
+      "tagName": "v3.6.10",
+      "publishedAt": "2024-06-19T22:07:07Z",
+      "sectionTitle": "Bug Fixes",
+      "category": "BUG_FIX",
+      "categoryPriority": 1,
+      "scope": "VDatePicker",
+      "summary": "don't update month/year if new model is empty (154e751), closes #20015",
+      "rawText": "**VDatePicker:** don't update month/year if new model is empty ([154e751](https://github.com/vuetifyjs/vuetify/commit/154e7516b89eb28f2f6c7568be92a5a28b5f572e)), closes [#20015](https://github.com/vuetifyjs/vuetify/issues/20015)",
+      "prNumbers": [
+        20015
+      ],
+      "issueNumbers": [
+        20015
+      ],
+      "commitHashes": [
+        "154e7516b89eb28f2f6c7568be92a5a28b5f572e"
+      ],
+      "sourceUrl": "https://github.com/vuetifyjs/vuetify/releases/tag/v3.6.10"
+    },
+    {
+      "itemId": "v3.6.10:wrench-bug-fixes:2",
+      "version": "3.6.10",
+      "versionRole": "CURRENT",
+      "tagName": "v3.6.10",
+      "publishedAt": "2024-06-19T22:07:07Z",
+      "sectionTitle": "Bug Fixes",
+      "category": "BUG_FIX",
+      "categoryPriority": 1,
+      "scope": "VExpansionPanel",
+      "summary": "remove unused toRef",
+      "rawText": "**VExpansionPanel:** remove unused toRef ([0931cec](https://github.com/vuetifyjs/vuetify/commit/0931cec21c35c062192b8f22b0438542f31bbce8))",
+      "prNumbers": [],
+      "issueNumbers": [],
+      "commitHashes": [
+        "0931cec21c35c062192b8f22b0438542f31bbce8"
+      ],
+      "sourceUrl": "https://github.com/vuetifyjs/vuetify/releases/tag/v3.6.10"
+    },
+    {
+      "itemId": "v3.6.10:wrench-bug-fixes:3",
+      "version": "3.6.10",
+      "versionRole": "CURRENT",
+      "tagName": "v3.6.10",
+      "publishedAt": "2024-06-19T22:07:07Z",
+      "sectionTitle": "Bug Fixes",
+      "category": "BUG_FIX",
+      "categoryPriority": 1,
+      "scope": "VExpansionPanel",
+      "summary": "propagate defaults provided by VExpansionPanels",
+      "rawText": "**VExpansionPanel:** propagate defaults provided by VExpansionPanels ([666484a](https://github.com/vuetifyjs/vuetify/commit/666484ae265194dc1512cb4f84f53ab928f5482b))",
+      "prNumbers": [],
+      "issueNumbers": [],
+      "commitHashes": [
+        "666484ae265194dc1512cb4f84f53ab928f5482b"
+      ],
+      "sourceUrl": "https://github.com/vuetifyjs/vuetify/releases/tag/v3.6.10"
+    },
+    {
+      "itemId": "v3.6.10:wrench-bug-fixes:4",
+      "version": "3.6.10",
+      "versionRole": "CURRENT",
+      "tagName": "v3.6.10",
+      "publishedAt": "2024-06-19T22:07:07Z",
+      "sectionTitle": "Bug Fixes",
+      "category": "BUG_FIX",
+      "categoryPriority": 1,
+      "scope": "VExpansionPanelTitle",
+      "summary": "propagate VIcon defaults",
+      "rawText": "**VExpansionPanelTitle:** propagate VIcon defaults ([cec2094](https://github.com/vuetifyjs/vuetify/commit/cec20943af77b1c723c560d7282ebecee865e38b))",
+      "prNumbers": [],
+      "issueNumbers": [],
+      "commitHashes": [
+        "cec20943af77b1c723c560d7282ebecee865e38b"
+      ],
+      "sourceUrl": "https://github.com/vuetifyjs/vuetify/releases/tag/v3.6.10"
+    }
+  ]
+}

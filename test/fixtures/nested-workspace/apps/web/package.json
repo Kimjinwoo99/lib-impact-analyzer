@@ -1,0 +1,11 @@
+﻿{
+  "name": "nested-web",
+  "version": "0.1.0",
+  "dependencies": {
+    "vue": "^3.5.0",
+    "axios": "^1.8.4"
+  },
+  "devDependencies": {
+    "vite": "^5.3.0"
+  }
+}

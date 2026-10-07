@@ -1,0 +1,29 @@
+{
+    "name": "lib-impact-analyzer",
+    "version": "0.1.0",
+    "private": true,
+    "description": "Read-only library update impact analyzer pilot.",
+    "type": "module",
+    "scripts": {
+        "analyze:deps": "node src/index.js",
+        "dev": "node scripts/dev.js",
+        "dev:api": "node server/dev-server.js",
+        "dev:web": "vite",
+        "build": "vite build",
+        "preview": "vite preview",
+        "test": "node --test test/*.test.js",
+        "smoke:render": "node scripts/render-smoke.js",
+        "collect:vuetify": "node scripts/collect-vuetify-releases.js",
+        "collect:t1": "node scripts/collect-t1-atom.js",
+        "parse:range": "node scripts/parse-release-range.js",
+        "agent:l4": "node scripts/run-l4-agent.js"
+    },
+    "engines": {
+        "node": ">=20"
+    },
+    "devDependencies": {
+        "@vitejs/plugin-vue": "^6.0.8",
+        "vite": "^7.3.6",
+        "vue": "^3.5.40"
+    }
+}

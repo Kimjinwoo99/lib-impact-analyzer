@@ -1,0 +1,308 @@
+{
+    "$schema":  "https://json-schema.org/draft/2020-12/schema",
+    "title":  "L4ClassificationResult",
+    "type":  "object",
+    "additionalProperties":  false,
+    "required":  [
+                     "packageName",
+                     "mode",
+                     "currentVersion",
+                     "targetVersion",
+                     "itemCount",
+                     "summary",
+                     "items",
+                     "globalInspectionPlan",
+                     "warnings"
+                 ],
+    "properties":  {
+                       "packageName":  {
+                                           "type":  "string"
+                                       },
+                       "mode":  {
+                                    "enum":  [
+                                                 "CURRENT_VERSION_HEALTHCHECK",
+                                                 "UPGRADE_IMPACT"
+                                             ]
+                                },
+                       "currentVersion":  {
+                                              "type":  "string"
+                                          },
+                       "targetVersion":  {
+                                             "type":  [
+                                                          "string",
+                                                          "null"
+                                                      ]
+                                         },
+                       "itemCount":  {
+                                         "type":  "integer",
+                                         "minimum":  0
+                                     },
+                       "summary":  {
+                                       "type":  "object",
+                                       "additionalProperties":  false,
+                                       "required":  [
+                                                        "high",
+                                                        "medium",
+                                                        "low",
+                                                        "unknown",
+                                                        "reviewRequired",
+                                                        "otherReclassified"
+                                                    ],
+                                       "properties":  {
+                                                          "high":  {
+                                                                       "type":  "integer",
+                                                                       "minimum":  0
+                                                                   },
+                                                          "medium":  {
+                                                                         "type":  "integer",
+                                                                         "minimum":  0
+                                                                     },
+                                                          "low":  {
+                                                                      "type":  "integer",
+                                                                      "minimum":  0
+                                                                  },
+                                                          "unknown":  {
+                                                                          "type":  "integer",
+                                                                          "minimum":  0
+                                                                      },
+                                                          "reviewRequired":  {
+                                                                                 "type":  "integer",
+                                                                                 "minimum":  0
+                                                                             },
+                                                          "otherReclassified":  {
+                                                                                    "type":  "integer",
+                                                                                    "minimum":  0
+                                                                                }
+                                                      }
+                                   },
+                       "items":  {
+                                     "type":  "array",
+                                     "items":  {
+                                                   "$ref":  "#/$defs/classifiedItem"
+                                               }
+                                 },
+                       "globalInspectionPlan":  {
+                                                    "type":  "object",
+                                                    "additionalProperties":  false,
+                                                    "required":  [
+                                                                     "fileGlobs",
+                                                                     "searchTerms",
+                                                                     "componentTags",
+                                                                     "importSpecifiers",
+                                                                     "configKeys",
+                                                                     "notes"
+                                                                 ],
+                                                    "properties":  {
+                                                                       "fileGlobs":  {
+                                                                                         "$ref":  "#/$defs/stringArray"
+                                                                                     },
+                                                                       "searchTerms":  {
+                                                                                           "$ref":  "#/$defs/stringArray"
+                                                                                       },
+                                                                       "componentTags":  {
+                                                                                             "$ref":  "#/$defs/stringArray"
+                                                                                         },
+                                                                       "importSpecifiers":  {
+                                                                                                "$ref":  "#/$defs/stringArray"
+                                                                                            },
+                                                                       "configKeys":  {
+                                                                                          "$ref":  "#/$defs/stringArray"
+                                                                                      },
+                                                                       "notes":  {
+                                                                                     "$ref":  "#/$defs/stringArray"
+                                                                                 }
+                                                                   }
+                                                },
+                       "warnings":  {
+                                        "$ref":  "#/$defs/stringArray"
+                                    }
+                   },
+    "$defs":  {
+                  "stringArray":  {
+                                      "type":  "array",
+                                      "items":  {
+                                                    "type":  "string"
+                                                }
+                                  },
+                  "classifiedItem":  {
+                                         "type":  "object",
+                                         "additionalProperties":  false,
+                                         "required":  [
+                                                          "itemId",
+                                                          "version",
+                                                          "versionRole",
+                                                          "publishedAt",
+                                                          "parserCategory",
+                                                          "agentCategory",
+                                                          "scope",
+                                                          "summary",
+                                                          "sourceUrl",
+                                                          "inputSelectionReasons",
+                                                          "preliminaryRisk",
+                                                          "reviewRequired",
+                                                          "suspectedImpactDomains",
+                                                          "suspectedChangeMechanisms",
+                                                          "inspectionPlan",
+                                                          "reasoning"
+                                                      ],
+                                         "properties":  {
+                                                            "itemId":  {
+                                                                           "type":  "string"
+                                                                       },
+                                                            "version":  {
+                                                                            "type":  "string"
+                                                                        },
+                                                            "versionRole":  {
+                                                                                "enum":  [
+                                                                                             "CURRENT",
+                                                                                             "TARGET",
+                                                                                             "INTERMEDIATE",
+                                                                                             null
+                                                                                         ]
+                                                                            },
+                                                            "publishedAt":  {
+                                                                                "type":  [
+                                                                                             "string",
+                                                                                             "null"
+                                                                                         ]
+                                                                            },
+                                                            "parserCategory":  {
+                                                                                   "$ref":  "#/$defs/parserCategory"
+                                                                               },
+                                                            "agentCategory":  {
+                                                                                  "$ref":  "#/$defs/parserCategory"
+                                                                              },
+                                                            "scope":  {
+                                                                          "type":  [
+                                                                                       "string",
+                                                                                       "null"
+                                                                                   ]
+                                                                      },
+                                                            "summary":  {
+                                                                            "type":  "string"
+                                                                        },
+                                                            "sourceUrl":  {
+                                                                              "type":  [
+                                                                                           "string",
+                                                                                           "null"
+                                                                                       ]
+                                                                          },
+                                                            "inputSelectionReasons":  {
+                                                                                          "$ref":  "#/$defs/stringArray"
+                                                                                      },
+                                                            "preliminaryRisk":  {
+                                                                                    "enum":  [
+                                                                                                 "HIGH",
+                                                                                                 "MEDIUM",
+                                                                                                 "LOW",
+                                                                                                 "UNKNOWN"
+                                                                                             ]
+                                                                                },
+                                                            "reviewRequired":  {
+                                                                                   "type":  "boolean"
+                                                                               },
+                                                            "suspectedImpactDomains":  {
+                                                                                           "type":  "array",
+                                                                                           "items":  {
+                                                                                                         "$ref":  "#/$defs/impactDomain"
+                                                                                                     },
+                                                                                           "minItems":  1
+                                                                                       },
+                                                            "suspectedChangeMechanisms":  {
+                                                                                              "type":  "array",
+                                                                                              "items":  {
+                                                                                                            "$ref":  "#/$defs/changeMechanism"
+                                                                                                        },
+                                                                                              "minItems":  1
+                                                                                          },
+                                                            "inspectionPlan":  {
+                                                                                   "type":  "object",
+                                                                                   "additionalProperties":  false,
+                                                                                   "required":  [
+                                                                                                    "fileGlobs",
+                                                                                                    "searchTerms",
+                                                                                                    "componentTags",
+                                                                                                    "importSpecifiers",
+                                                                                                    "configKeys",
+                                                                                                    "reason"
+                                                                                                ],
+                                                                                   "properties":  {
+                                                                                                      "fileGlobs":  {
+                                                                                                                        "$ref":  "#/$defs/stringArray"
+                                                                                                                    },
+                                                                                                      "searchTerms":  {
+                                                                                                                          "$ref":  "#/$defs/stringArray"
+                                                                                                                      },
+                                                                                                      "componentTags":  {
+                                                                                                                            "$ref":  "#/$defs/stringArray"
+                                                                                                                        },
+                                                                                                      "importSpecifiers":  {
+                                                                                                                               "$ref":  "#/$defs/stringArray"
+                                                                                                                           },
+                                                                                                      "configKeys":  {
+                                                                                                                         "$ref":  "#/$defs/stringArray"
+                                                                                                                     },
+                                                                                                      "reason":  {
+                                                                                                                     "type":  "string"
+                                                                                                                 }
+                                                                                                  }
+                                                                               },
+                                                            "reasoning":  {
+                                                                              "type":  "string"
+                                                                          }
+                                                        }
+                                     },
+                  "parserCategory":  {
+                                         "enum":  [
+                                                      "BREAKING",
+                                                      "BUG_FIX",
+                                                      "REVERT",
+                                                      "FEATURE",
+                                                      "LABS",
+                                                      "REFACTOR",
+                                                      "RELEASE_NOTE",
+                                                      "PERFORMANCE",
+                                                      "OTHER"
+                                                  ]
+                                     },
+                  "impactDomain":  {
+                                       "enum":  [
+                                                    "SOURCE_API",
+                                                    "CONFIGURATION",
+                                                    "PACKAGE_METADATA",
+                                                    "DEPENDENCY_RESOLUTION",
+                                                    "INSTALLATION",
+                                                    "CLI_USAGE",
+                                                    "BUILD",
+                                                    "PLUGIN",
+                                                    "RUNTIME",
+                                                    "CI_ENVIRONMENT",
+                                                    "PROJECT_CREATION",
+                                                    "OUTPUT_ARTIFACT",
+                                                    "DOCUMENTATION_ONLY",
+                                                    "TEST_ONLY",
+                                                    "INTERNAL_MAINTENANCE",
+                                                    "UNKNOWN"
+                                                ]
+                                   },
+                  "changeMechanism":  {
+                                          "enum":  [
+                                                       "ADDED",
+                                                       "REMOVED",
+                                                       "DEPRECATED",
+                                                       "DEFAULT_CHANGED",
+                                                       "BEHAVIOR_CHANGED",
+                                                       "ORDER_CHANGED",
+                                                       "REQUIREMENT_CHANGED",
+                                                       "VALIDATION_TIGHTENED",
+                                                       "FORMAT_CHANGED",
+                                                       "RESOLUTION_CHANGED",
+                                                       "MIGRATED",
+                                                       "RENAMED",
+                                                       "FIXED",
+                                                       "PERFORMANCE_CHANGED",
+                                                       "UNKNOWN"
+                                                   ]
+                                      }
+              }
+}

@@ -1,0 +1,615 @@
+/*
+ * Design system for the library update impact dashboard.
+ *
+ * The accent is a green ramp: --brand at full saturation (2.1:1 on white, so
+ * only ever a thin unlabelled mark — a progress bar, a tile edge, a check) and
+ * --accent, the same hue darkened to 5.1:1, which is legal as text, icons and
+ * borders. Surfaces, lines, text and status colours are neutral and read
+ * faintly cool against the green on purpose.
+ *
+ * --accent stays at hue 91deg rather than shifting toward true green: a deeper
+ * accent landed at dE 15 from --ok-fg, and AnalysisRunning stacks "진행 중"
+ * (accent) over "완료" (ok) in one column. Staying at 91deg keeps dE 29.
+ */
+:root {
+  /* ---- surface ---------------------------------------- */
+  --bg: #f4f6fb;
+  --panel: #ffffff;
+  --soft: #fafbfe;
+  --soft-alt: #fafbff;
+  --soft-stat: #fbfcff;
+  --row-alt: #fcfdfe;
+  --line: #e4e8f2;
+  --line-soft: #eef1f7;
+  --line-strong: #d1d6e0;
+  --track: #e5ebf5;
+
+  /* ---- text -------------------------------------------------------- */
+  --text: #171f2e;
+  --text-2: #3c4658;
+  --muted: #667286;
+  --muted-strong: #66738a;
+  --muted-soft: #7b8699;
+
+  /* ---- brand ----------------------------------------- */
+  --brand: #7ec141;
+  --brand-mid: #4f8c36;
+
+  /*
+   * --accent is the lightest green that is still legal as text on white
+   * (4.5:1 exactly). Anything darker turns olive, which is the one thing this
+   * palette must not do — the brand green is a light one.
+   *
+   * --accent-alt is the same green pushed down for text sitting on --accent-bg,
+   * where --accent itself only reaches 4.1:1.
+   */
+  --accent: #55832b;
+  --accent-alt: #46701f;
+  --accent-hover: #4a7325;
+  --accent-active: #3f621f;
+  --accent-bg: #eff8e4;
+  --accent-bg-strong: #e9f5da;
+  --accent-border: #b6dc93;
+
+  /* ---- status ------------------------------------------------------ */
+  --ok-bg: #e5faf0;
+  --ok-fg: #0f7a4b;
+  --warn-bg: #fff5de;
+  --warn-fg: #b0670b;
+  --bad-bg: #ffebed;
+  --bad-fg: #c42a34;
+  --idle-bg: #f0f2f7;
+  --idle-fg: #66738a;
+
+  /* ---- spacing (4px base) ------------------------------------------ */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 20px;
+  --s-6: 24px;
+  --s-7: 32px;
+  --s-8: 40px;
+
+  /* ---- type -------------------------------------------------------- */
+  --t-display: 26px;
+  --t-title: 18px;
+  --t-section: 15px;
+  --t-body: 13px;
+  --t-small: 12px;
+  --t-micro: 11px;
+  /* 컴포넌트 전용 — KPI 큰 숫자·헤더 앱명 (시연 스케일이 함께 키운다) */
+  --t-kpi: 24px;
+  --t-appname: 17px;
+  --t-version: 22px;
+  --t-version-arrow: 20px;
+
+  /* ---- control heights — 글자가 커지면 컨트롤도 숨을 쉬어야 한다 ---- */
+  --h-pill: 26px;
+  --h-btn: 40px;
+  --h-btn-sm: 32px;
+  --h-field: 42px;
+  --h-tab: 32px;
+  --h-btn-lg: 46px;
+  --t-btn-lg: 14px;
+}
+
+
+:root {
+  /* ---- geometry ---------------------------------------------------- */
+  --radius-card: 16px;
+  --radius-control: 10px;
+  --radius-inner: 12px;
+  --radius-pill: 999px;
+  --radius-table: 10px;
+  --radius-sm: 8px;
+
+  /* ---- elevation --------------------------------------------------- */
+  --shadow-card: 0 1px 2px rgba(20, 31, 51, 0.04), 0 4px 16px rgba(20, 31, 51, 0.06);
+  --shadow-raised: 0 2px 6px rgba(20, 31, 51, 0.07), 0 12px 28px rgba(20, 31, 51, 0.09);
+  --shadow-overlay: 0 18px 48px rgba(20, 31, 51, 0.24);
+
+  /* ---- motion ------------------------------------------------------ */
+  --ease: cubic-bezier(0.2, 0, 0.2, 1);
+  --fast: 0.14s var(--ease);
+  --slow: 0.28s var(--ease);
+
+  /* ---- layout ------------------------------------------------------ */
+  --header-h: 72px;
+  --page-w: 1440px;
+  --gutter: 48px;
+}
+
+@media (max-width: 1200px) {
+  :root {
+    --gutter: 28px;
+  }
+}
+
+@media (max-width: 820px) {
+  :root {
+    --gutter: 16px;
+    --header-h: 64px;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/*
+ * 강조용 폰트 분리 (2026-08-22) — 타이틀·라벨류는 시스템 폰트의 진짜 볼드를 쓴다.
+ */
+:root {
+  --font-strong: 'Pretendard', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+}
+.card-title,
+.section-title,
+.eyebrow,
+.detail__title,
+.detail__sectiontitle,
+.checklist__label,
+.fact dt,
+.meta dt,
+.kpi__label,
+.stepper__label,
+.result__pkg,
+.refs__head {
+  font-family: var(--font-strong);
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Noto Sans KR', 'Pretendard', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+  font-size: var(--t-body);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+code,
+pre,
+.mono {
+  font-family: 'D2Coding', 'JetBrains Mono', Consolas, 'Courier New', monospace;
+  font-variant-ligatures: none;
+}
+
+/* One focus treatment everywhere, keyboard-only. */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+::selection {
+  background: var(--accent-bg);
+}
+
+/* ---- card ------------------------------------------------------------ */
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: var(--s-6);
+}
+
+.card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--s-4);
+}
+
+.card-title {
+  margin: 0;
+  font-size: var(--t-title);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+
+.card-sub {
+  margin: var(--s-2) 0 0;
+  font-size: var(--t-body);
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.section-title {
+  margin: 0;
+  font-size: var(--t-section);
+  font-weight: 700;
+  color: var(--text);
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: var(--t-micro);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted-soft);
+}
+
+/* ---- pill ------------------------------------------------------------ */
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: var(--h-pill);
+  padding: 0 0.85em;
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  background: var(--accent-bg);
+  color: var(--accent-alt);
+  font-size: var(--t-small);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.pill--ok {
+  background: var(--ok-bg);
+  color: var(--ok-fg);
+}
+.pill--warn {
+  background: var(--warn-bg);
+  color: var(--warn-fg);
+}
+.pill--bad {
+  background: var(--bad-bg);
+  color: var(--bad-fg);
+}
+.pill--idle {
+  background: var(--idle-bg);
+  color: var(--idle-fg);
+}
+.pill--review {
+  background: var(--accent-bg-strong);
+  border-color: var(--accent-border);
+  color: var(--accent-alt);
+}
+.pill--skip {
+  background: var(--idle-bg);
+  border-color: var(--line-strong);
+  color: var(--idle-fg);
+}
+
+/* Colour alone should not carry meaning. */
+.pill::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.75;
+  flex: none;
+}
+
+.pill--nodot::before {
+  display: none;
+}
+
+/* ---- buttons --------------------------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-2);
+  height: var(--h-btn);
+  padding: 0 1.3em;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  background: var(--panel);
+  color: var(--text);
+  font-size: var(--t-body);
+  font-weight: 600;
+  white-space: nowrap;
+  transition:
+    background var(--fast),
+    border-color var(--fast),
+    color var(--fast),
+    box-shadow var(--fast),
+    transform var(--fast);
+}
+
+.btn:hover:not(:disabled) {
+  background: var(--soft);
+  border-color: var(--line-strong);
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.btn:disabled {
+  background: var(--soft);
+  color: var(--muted-soft);
+  border-color: var(--line-soft);
+  cursor: not-allowed;
+}
+
+/*
+ * White surface, near-black label, and the brand green as a single dot. Every
+ * version that put green on the label or the fill read as either loud (filled
+ * lime) or muddy (dark green text), so the colour is down to one 7px mark and
+ * the hierarchy is carried by weight and elevation.
+ *
+ * .btn and .btn--primary are both white, so the separation is deliberate:
+ * 700 vs 600, the dot, and a shadow a step above --shadow-card. Weakening any
+ * of the three collapses the primary into the secondary beside it.
+ */
+.btn--primary {
+  border-color: var(--line);
+  background: var(--panel);
+  color: var(--text);
+  font-weight: 700;
+  box-shadow: 0 2px 4px rgba(20, 31, 51, 0.06), 0 8px 20px rgba(20, 31, 51, 0.09);
+}
+
+.btn--primary::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--brand);
+  flex: none;
+}
+
+.btn--primary:hover:not(:disabled) {
+  background: var(--panel);
+  border-color: var(--line-strong);
+  box-shadow: 0 3px 6px rgba(20, 31, 51, 0.08), 0 12px 26px rgba(20, 31, 51, 0.12);
+}
+
+.btn--primary:active:not(:disabled) {
+  background: var(--soft);
+  border-color: var(--line-strong);
+  box-shadow: 0 1px 2px rgba(20, 31, 51, 0.08);
+}
+
+.btn--primary:disabled {
+  background: var(--panel);
+  border-color: var(--line-soft);
+  color: var(--muted-soft);
+  box-shadow: none;
+}
+
+.btn--primary:disabled::before {
+  background: var(--line-strong);
+}
+
+.btn--danger {
+  border-color: var(--bad-fg);
+  background: var(--bad-fg);
+  color: #fff;
+}
+
+.btn--danger:hover:not(:disabled) {
+  background: #a92730;
+  border-color: #a92730;
+}
+
+.btn--ghost {
+  border-color: transparent;
+  background: transparent;
+  color: var(--muted);
+}
+
+.btn--ghost:hover:not(:disabled) {
+  background: var(--soft);
+  color: var(--text);
+}
+
+.btn--dashed {
+  border-style: dashed;
+  border-color: var(--warn-fg);
+  background: var(--warn-bg);
+  color: var(--warn-fg);
+}
+
+.btn--dashed:hover:not(:disabled) {
+  background: #ffeeca;
+  border-color: var(--warn-fg);
+}
+
+.btn--sm {
+  height: var(--h-btn-sm);
+  padding: 0 1em;
+  font-size: var(--t-small);
+}
+
+.btn--lg {
+  height: var(--h-btn-lg);
+  padding: 0 1.4em;
+  font-size: var(--t-btn-lg);
+}
+
+/* ---- form controls --------------------------------------------------- */
+
+.field {
+  width: 100%;
+  height: var(--h-field);
+  padding: 0 var(--s-3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  background: var(--panel);
+  font-size: var(--t-body);
+  color: var(--text);
+  transition:
+    border-color var(--fast),
+    box-shadow var(--fast),
+    background var(--fast);
+}
+
+.field::placeholder {
+  color: var(--muted-soft);
+}
+
+.field:hover:not(:disabled):not(:read-only) {
+  border-color: var(--line-strong);
+}
+
+.field:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(63, 125, 18, 0.16);
+}
+
+.field:read-only {
+  background: var(--soft);
+  color: var(--text-2);
+}
+
+select.field {
+  appearance: none;
+  padding-right: 34px;
+  background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%),
+    linear-gradient(135deg, var(--muted) 50%, transparent 50%);
+  background-position:
+    calc(100% - 17px) calc(50% + 1px),
+    calc(100% - 12px) calc(50% + 1px);
+  background-size: 5px 5px;
+  background-repeat: no-repeat;
+}
+
+.label {
+  display: block;
+  margin-bottom: var(--s-2);
+  font-size: var(--t-small);
+  font-weight: 600;
+  color: var(--text-2);
+}
+
+.hint {
+  margin: var(--s-2) 0 0;
+  font-size: var(--t-small);
+  color: var(--muted);
+}
+
+/* ---- containers ------------------------------------------------------ */
+
+.inset {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-inner);
+  background: var(--soft-alt);
+}
+
+.note {
+  border-radius: var(--radius-control);
+  background: var(--soft);
+  border: 1px solid var(--line-soft);
+  padding: var(--s-3) var(--s-4);
+  font-size: var(--t-small);
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.callout {
+  display: flex;
+  gap: var(--s-3);
+  padding: var(--s-4);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--muted);
+  border-radius: var(--radius-inner);
+  background: var(--soft);
+  font-size: var(--t-small);
+  line-height: 1.65;
+}
+
+.callout--warn {
+  border-color: #f3dfae;
+  border-left-color: var(--warn-fg);
+  background: #fffaf0;
+}
+
+.callout--bad {
+  border-color: #f5cdd0;
+  border-left-color: var(--bad-fg);
+  background: #fff5f5;
+}
+
+.callout--accent {
+  border-color: var(--line);
+  border-left-color: var(--brand);
+  background: var(--soft);
+}
+
+.callout__title {
+  margin: 0 0 var(--s-1);
+  font-size: var(--t-body);
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* ---- utility --------------------------------------------------------- */
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
